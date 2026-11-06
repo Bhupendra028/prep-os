@@ -1,5 +1,5 @@
 
-window.PREP_OS_FIREBASE_CONFIG = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDLhs9bqe9mYseEQK6EZEXyD3HdNd0vHgI",
   authDomain: "prep-os-learning-2027.firebaseapp.com",
   projectId: "prep-os-learning-2027",
@@ -8,3 +8,6 @@ window.PREP_OS_FIREBASE_CONFIG = {
   appId: "1:284900782444:web:05be7ff0dc176d3a024349",
   measurementId: "G-345LR0V6V7"
 };
+
+// Compatibility with code that reads the global config.
+window.PREP_OS_FIREBASE_CONFIG = firebaseConfig;
