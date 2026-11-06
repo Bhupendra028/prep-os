@@ -1,6 +1,6 @@
 // App-shell offline cache. Uploaded PDFs, annotations and study data live in IndexedDB.
-const CACHE = 'prep-os-shell-v1';
-const ASSETS = ['./','./index.html','./styles.css','./manifest.webmanifest','./icons/icon.svg','./curriculum.json','./js/app.js','./js/db.js','./js/engine.js','./js/questions.js'];
+const CACHE = 'prep-os-shell-v3-google';
+const ASSETS = ['./','./index.html','./styles.css','./manifest.webmanifest','./icons/icon.svg','./curriculum.json','./js/app.js','./js/cloud.js','./cloud-config.js','./js/db.js','./js/engine.js','./js/questions.js'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
 });
