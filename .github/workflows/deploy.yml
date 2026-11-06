@@ -1,0 +1,60 @@
+name: Test and deploy Prep OS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run core tests
+        run: npm test
+
+      - name: Assemble only public application files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist/js dist/icons
+          cp index.html styles.css manifest.webmanifest sw.js curriculum.json .nojekyll dist/
+          cp js/app.js js/db.js js/engine.js js/questions.js dist/js/
+          cp icons/icon.svg dist/icons/
+          test -f dist/index.html
+          test -f dist/js/app.js
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
