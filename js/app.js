@@ -104,7 +104,7 @@ async function initialize(){
  document.addEventListener('click',clickDispatcher);
  document.addEventListener('change',changeDispatcher);
  document.addEventListener('input',inputDispatcher);
- if('serviceWorker' in navigator && location.protocol!=='file:')navigator.serviceWorker.register('./sw.js').catch(console.warn);
+ if('serviceWorker' in navigator && location.protocol!=='file:')navigator.serviceWorker.register('./sw.js?v=20261106-v4', {updateViaCache:'none'}).catch(console.warn);
  render();
  if(cloud.configured())cloud.initialize().then(()=>{if(activeRoute==='settings')renderSettings();}).catch(err=>console.warn('Firebase sign-in session not yet available:',err));
 }
