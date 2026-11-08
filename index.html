@@ -31,7 +31,7 @@
       <nav class="nav-list"><a href="#settings" data-nav="settings"><span class="nav-icon">⚙</span> Settings & Backup</a></nav>
       <div class="sidebar-bottom">
         <div class="sidebar-status"><span class="live-dot"></span> LOCAL-FIRST • PRIVATE</div>
-        <div class="sidebar-tip">Your notes and PDFs stay on this device unless you choose to export them.</div>
+        <div class="sidebar-tip">PDFs sync privately only if you upload them. Notes stay on this device unless backed up.</div>
       </div>
     </aside>
     <div class="main-shell">
@@ -54,8 +54,9 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <dialog class="modal" id="modal"><div id="modal-content"></div></dialog>
   <input id="pdf-upload" type="file" accept="application/pdf,.pdf" multiple hidden>
+  <input id="cloud-pdf-upload" type="file" accept="application/pdf,.pdf" multiple hidden>
   <input id="backup-import" type="file" accept="application/json,.json" hidden>
-  <script type="module" src="./js/app.js?v=20261106-v4"></script>
-<div id="release-marker" style="position:fixed;bottom:5px;right:7px;z-index:9999;font:10px system-ui;color:#68818a;pointer-events:none">Prep OS cloud patch v4</div>
+  <script type="module" src="./js/app.js?v=20261108-drive-v6"></script>
+<div id="release-marker" style="position:fixed;bottom:5px;right:7px;z-index:9999;font:10px system-ui;color:#68818a;pointer-events:none">Prep OS Drive Library v6</div>
 </body>
 </html>
