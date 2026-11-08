@@ -54,10 +54,22 @@ function renderCurriculum(){
   `<div class="filters"><input id="curriculum-search" class="input" placeholder="Search reading title…" value="${safe(state.curriculumSearch||'')}"/><select id="subject-filter" class="select"><option>All subjects</option>${KEYS.map(x=>`<option ${x===sub?'selected':''}>${safe(x)}</option>`).join('')}</select><span class="tag">${arr.length} readings</span></div><div class="card list-card"><table class="list-table"><thead><tr><th>#</th><th>Subject</th><th>Learning module / reading</th><th>Progress</th><th>Open</th></tr></thead><tbody>${page.map(r=>`<tr><td class="row-num">${r.index}</td><td><span class="tag">${safe(r.subject)}</span></td><td><strong>${safe(r.title)}</strong><div class="tiny">${safe(r.id)} · Source verification pending</div></td><td>${statusSelector(r)}</td><td>${button('Study',`study-${r.id}`,'sm')}</td></tr>`).join('')}</tbody></table></div><div class="pagination">${button('← Previous','curriculum-prev','sm',curriculumPage===0?'disabled':'')}<span class="subtle">Page ${curriculumPage+1} of ${pageCount}</span>${button('Next →','curriculum-next','sm',curriculumPage===pageCount-1?'disabled':'')}</div>`;
 }
 function readerDocOptions(){return state.documents.map(d=>`<option value="${safe(d.id)}" ${state.currentDocId===d.id?'selected':''}>${safe(lastPart(d.name))}</option>`).join('');}
+let readerFullscreen=false;
+function toggleReaderFullscreen(){
+ readerFullscreen=!readerFullscreen;
+ const card=document.querySelector(".reader-card");
+ if(card)card.classList.toggle("reader-fullscreen",readerFullscreen);
+ const btn=document.querySelector("[data-action=reader-fullscreen]");
+ if(btn){btn.textContent=readerFullscreen?"⤢ Exit full screen":"⛶ Full screen";btn.setAttribute("aria-pressed",String(readerFullscreen));}
+ document.body.classList.toggle("reader-fullscreen-open",readerFullscreen);
+ // Re-render PDF at the new viewport width without clearing annotations.
+ if(currentDoc())setTimeout(()=>loadPDFPage(state.currentDocId,pageNumber),80);
+}
 function renderReader(){
   const doc=currentDoc(),read=curriculum.readings.find(r=>r.id===state.lastOpenedReading),key=doc?`${doc.id}:${pageNumber}`:'',text=state.readingNotes[key]||'';
-  $(V('reader')).innerHTML=heading('INTERACTIVE BOOK STUDIO','Read, write, and remember','Draw on PDF pages with a mouse or stylus, create page-linked notes, and turn concepts into flashcards.',button('+ Import PDF','upload','primary'))+
-  `<div class="reader-grid"><div class="card reader-card"><div class="reader-toolbar"><select id="reader-document" class="select" style="max-width:250px;flex:1"><option value="">${state.documents.length?'Select a book':'No PDFs imported yet'}</option>${readerDocOptions()}</select><span class="separator"></span><button class="tool-btn ${readerTool==='pen'?'selected':''}" data-action="tool-pen" title="Freehand pen">✎ Pen</button><button class="tool-btn ${readerTool==='highlighter'?'selected':''}" data-action="tool-highlighter" title="Freehand highlighter">▰ Highlight</button><button class="tool-btn ${readerTool==='eraser'?'selected':''}" data-action="tool-eraser" title="Tap a stroke to erase it">⌫ Erase</button><button class="tool-btn" data-action="undo-stroke" title="Undo last stroke">↶</button><span class="separator"></span><button class="tool-btn" data-action="page-prev">‹</button><input id="page-number" class="page-input" inputmode="numeric" value="${pageNumber}" aria-label="PDF page number"><span class="subtle">/ <span id="pdf-pagecount">${doc?.pages||'?'}</span></span><button class="tool-btn" data-action="page-next">›</button><button class="tool-btn" data-action="zoom-out">−</button><button class="tool-btn" data-action="zoom-in">+</button></div>
+  document.body.classList.toggle('reader-fullscreen-open',readerFullscreen);
+  $(V('reader')).innerHTML=heading('INTERACTIVE BOOK STUDIO','Read, write, and remember','Draw on PDF pages with a stylus, create page-linked notes, and turn concepts into flashcards.',button('+ Import PDF','upload','primary'))+
+  `<div class="reader-grid"><div class="card reader-card ${readerFullscreen?'reader-fullscreen':''}"><div class="reader-toolbar"><button class="tool-btn reader-fullscreen-btn" data-action="reader-fullscreen" aria-pressed="${readerFullscreen}" title="Toggle full-screen reading">${readerFullscreen?'⤢ Exit full screen':'⛶ Full screen'}</button><select id="reader-document" class="select" style="max-width:250px;flex:1"><option value="">${state.documents.length?'Select a book':'No PDFs imported yet'}</option>${readerDocOptions()}</select><span class="separator"></span><button class="tool-btn ${readerTool==='pen'?'selected':''}" data-action="tool-pen" title="Freehand pen">✎ Pen</button><button class="tool-btn ${readerTool==='highlighter'?'selected':''}" data-action="tool-highlighter" title="Freehand highlighter">▰ Highlight</button><button class="tool-btn ${readerTool==='eraser'?'selected':''}" data-action="tool-eraser" title="Tap a stroke to erase it">⌫ Erase</button><button class="tool-btn" data-action="undo-stroke" title="Undo last stroke">↶</button><span class="separator"></span><button class="tool-btn" data-action="page-prev">‹</button><input id="page-number" class="page-input" inputmode="numeric" value="${pageNumber}" aria-label="PDF page number"><span class="subtle">/ <span id="pdf-pagecount">${doc?.pages||'?'}</span></span><button class="tool-btn" data-action="page-next">›</button><button class="tool-btn" data-action="zoom-out">−</button><button class="tool-btn" data-action="zoom-in">+</button></div>
   <div class="doc-viewport" id="doc-viewport">${doc&&(!doc.missing||doc.cloudId)?`<div id="pdf-stage" class="pdf-stage"><canvas id="pdf-canvas"></canvas><canvas id="annotation-canvas" class="ink-layer" aria-label="Draw annotation layer"></canvas></div>`:doc?.missing?`<div class="reader-blank"><h3>Re-import your PDF</h3><p>The notes and annotations were restored, but PDF bytes were not included. Import a file named <strong>${safe(doc.name)}</strong> to relink it.</p>${button('Relink PDF','upload','primary')}</div>`:`<div class="reader-blank"><div style="font-size:55px">▣</div><h3>Your annotated study books belong here</h3><p>Import a PDF locally. To make it available on other devices, sign in and use Upload PDF to cloud under Knowledge Library.</p>${button('Import my book','upload','primary')}</div>`}</div><div class="statusbar" id="pdf-status">${doc?.missing?'PDF missing — please re-import the same file name to relink.':doc?'Loading your PDF…':'PDFs remain private and are not included in the project download.'}</div></div>
   <aside class="reader-panel"><div class="card"><div class="card-head" style="margin-bottom:10px"><h2 class="section-title">Page notebook</h2><span class="pill">PAGE ${pageNumber}</span></div><label class="form-label" for="page-notes">Write your own notes</label><textarea class="textarea" id="page-notes" placeholder="Explain this concept in your own words…" ${doc?'':'disabled'}>${safe(text)}</textarea><div class="workspace-actions" style="margin-top:10px">${button('Save note','save-note','sm')}${button('+ Flashcard','add-page-flashcard','sm')}</div></div>
   <div class="card"><h2 class="section-title" style="margin-bottom:10px">Linked syllabus topic</h2><select id="reader-reading" class="select" aria-label="Link current reading">${curriculum.readings.map(r=>`<option value="${r.id}" ${r.id===state.lastOpenedReading?'selected':''}>${safe(r.title)}</option>`).join('')}</select><p class="help">This is a manual topic link in v1. It does not yet prove that a PDF page matches the 2027 LOS.</p></div>
@@ -190,7 +202,7 @@ async function loadPDFPage(id,p){if(rendering)return;const status=$('pdf-status'
   pageNumber=Math.max(1,Math.min(doc.numPages,p));const page=await doc.getPage(pageNumber);const base=page.getViewport({scale:1});const width=Math.min(920,Math.max(320,($('doc-viewport')?.clientWidth||850)-44));const actualZoom=zoom*width/base.width;const viewport=page.getViewport({scale:actualZoom});
   const canvas=$('pdf-canvas'),ink=$('annotation-canvas'),stage=readerStage();if(!canvas||!ink||!stage)return;
   const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(viewport.width*dpr);canvas.height=Math.round(viewport.height*dpr);canvas.style.width=`${viewport.width}px`;canvas.style.height=`${viewport.height}px`;
-  stage.style.width=`${viewport.width}px`;stage.style.height=`${viewport.height}px`;ink.width=Math.round(viewport.width*dpr);ink.height=Math.round(viewport.height*dpr);ink.style.width=`${viewport.width}px`;ink.style.height=`${viewport.height}px`;ink.style.touchAction='pan-x pan-y pinch-zoom';
+  stage.style.width=`${viewport.width}px`;stage.style.height=`${viewport.height}px`;ink.width=Math.round(viewport.width*dpr);ink.height=Math.round(viewport.height*dpr);ink.style.width=`${viewport.width}px`;ink.style.height=`${viewport.height}px`;ink.style.touchAction='none';stage.style.touchAction='none';
   await page.render({canvasContext:canvas.getContext('2d'),viewport,transform:dpr!==1?[dpr,0,0,dpr,0,0]:null}).promise;
   $('pdf-pagecount').textContent=doc.numPages;$('page-number').value=pageNumber;
   const key=`${id}:${pageNumber}`;$('page-notes').value=state.readingNotes[key]||'';drawAnnotations();bindDrawing(ink);
@@ -199,41 +211,112 @@ async function loadPDFPage(id,p){if(rendering)return;const status=$('pdf-status'
  finally{rendering=false;}}
 function annotationKey(){return `${state.currentDocId}:${pageNumber}`;}
 function canvasCoords(event,canvas){let rect=canvas.getBoundingClientRect();return {x:Math.max(0,Math.min(1,(event.clientX-rect.left)/rect.width)),y:Math.max(0,Math.min(1,(event.clientY-rect.top)/rect.height))};}
-// Only stylus pointer events modify PDF ink. Finger touch is reserved for native scroll/pan/pinch and UI controls.
+// Stylus draws; touch pointers navigate. touch-action:none prevents Android
+// from converting a stylus stroke into a native scroll and cancelling it.
 function bindDrawing(canvas){
- let activePointerId=null;
+ const touches=new Map();
+ let activePointerId=null, eraserChanged=false, touchStart=null, pinchStart=null;
+ const viewport=$('doc-viewport');
+ const distance=()=>{const pts=[...touches.values()];return pts.length<2?0:Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);};
+ const eraseAt=(event)=>{
+  const pt=canvasCoords(event,canvas),key=annotationKey(),strokes=state.annotations[key]||[];
+  let best=-1,min=.045;
+  strokes.forEach((stroke,i)=>{
+   const pts=stroke.points||[];
+   for(let j=0;j<pts.length;j++){
+    const p=pts[j],d=Math.hypot((p.x-pt.x)*1.2,p.y-pt.y);
+    if(d<min){min=d;best=i;}
+    if(j>0){
+     const a=pts[j-1],dx=(p.x-a.x)*1.2,dy=p.y-a.y;
+     const t=Math.max(0,Math.min(1,(((pt.x-a.x)*1.2)*dx+(pt.y-a.y)*dy)/(dx*dx+dy*dy||1)));
+     const d2=Math.hypot((pt.x-a.x)*1.2-t*dx,pt.y-a.y-t*dy);
+     if(d2<min){min=d2;best=i;}
+    }
+   }
+  });
+  if(best>=0){strokes.splice(best,1);eraserChanged=true;drawAnnotations();}
+ };
  canvas.onpointerdown=event=>{
-  if(event.pointerType!=='pen'||!state.currentDocId||activePointerId!==null)return;
-  event.preventDefault();
-  const pt=canvasCoords(event,canvas),key=annotationKey();
-  state.annotations[key]=state.annotations[key]||[];
-  if(readerTool==='eraser'){
-   let strokes=state.annotations[key],min=.045,idx=-1;
-   strokes.forEach((stroke,i)=>stroke.points.forEach(p=>{const dist=Math.hypot((p.x-pt.x)*1.2,p.y-pt.y);if(dist<min){min=dist;idx=i;}}));
-   if(idx>=0){strokes.splice(idx,1);save();drawAnnotations();}
+  if(event.pointerType==='touch'){
+   event.preventDefault();
+   touches.set(event.pointerId,{x:event.clientX,y:event.clientY});
+   if(touches.size===1)touchStart={x:event.clientX,y:event.clientY,moved:false};
+   if(touches.size===2){pinchStart={distance:distance(),zoom};touchStart=null;}
+   try{canvas.setPointerCapture(event.pointerId);}catch(_){}
    return;
   }
-  activePointerId=event.pointerId;
-  activeStroke={tool:readerTool,points:[pt],id:uid()};
-  try{canvas.setPointerCapture(event.pointerId);}catch(e){console.warn('Stylus capture unavailable',e);}
-  drawAnnotations();
+  if(event.pointerType!=='pen'||!state.currentDocId||activePointerId!==null)return;
+  event.preventDefault();
+  activePointerId=event.pointerId;eraserChanged=false;
+  if(readerTool==='eraser')eraseAt(event);
+  else{
+   activeStroke={tool:readerTool,points:[canvasCoords(event,canvas)],id:uid()};
+   drawAnnotations();
+  }
+  try{canvas.setPointerCapture(event.pointerId);}catch(_){}
  };
  canvas.onpointermove=event=>{
-  if(event.pointerType!=='pen'||event.pointerId!==activePointerId||!activeStroke)return;
-  event.preventDefault();activeStroke.points.push(canvasCoords(event,canvas));drawAnnotations();
+  if(event.pointerType==='touch'){
+   if(!touches.has(event.pointerId))return;
+   event.preventDefault();
+   const prev=touches.get(event.pointerId);
+   touches.set(event.pointerId,{x:event.clientX,y:event.clientY});
+   if(touches.size===2&&pinchStart?.distance){pinchStart.zoom=Math.max(.65,Math.min(2.5,zoom*distance()/pinchStart.distance));}
+   if(touches.size===1&&viewport){
+    viewport.scrollLeft-=event.clientX-prev.x;
+    viewport.scrollTop-=event.clientY-prev.y;
+    if(touchStart&&Math.hypot(event.clientX-touchStart.x,event.clientY-touchStart.y)>12)touchStart.moved=true;
+   }
+   return;
+  }
+  if(event.pointerType!=='pen'||event.pointerId!==activePointerId)return;
+  event.preventDefault();
+  if(readerTool==='eraser')eraseAt(event);
+  else if(activeStroke){activeStroke.points.push(canvasCoords(event,canvas));drawAnnotations();}
  };
  const complete=event=>{
+  if(event.pointerType==='touch'){
+   if(!touches.has(event.pointerId))return;
+   event.preventDefault();
+   const wasSingle=touches.size===1;
+   touches.delete(event.pointerId);
+   if(touches.size===0){
+    if(pinchStart&&pinchStart.distance>0){
+     const newZoom=Math.max(.65,Math.min(2.5,pinchStart.zoom));
+     if(Math.abs(newZoom-zoom)>.04){zoom=newZoom;renderReader();}
+    }else if(wasSingle&&touchStart&&viewport&&viewport.scrollWidth<=viewport.clientWidth+8){
+     const dx=event.clientX-touchStart.x,dy=event.clientY-touchStart.y;
+     if(Math.abs(dx)>90&&Math.abs(dy)<65&&currentDoc()){
+      pageNumber=Math.max(1,Math.min(currentDoc().pages||Infinity,pageNumber+(dx<0?1:-1)));
+      rememberPage();renderReader();
+     }
+    }
+    pinchStart=null;touchStart=null;
+   }
+   return;
+  }
   if(event.pointerType!=='pen'||event.pointerId!==activePointerId)return;
-  activePointerId=null;
-  if(!activeStroke)return;
-  const key=annotationKey();state.annotations[key]=state.annotations[key]||[];
-  if(event.type==='pointerup')state.annotations[key].push(activeStroke);
-  activeStroke=null;save();drawAnnotations();
+  event.preventDefault();activePointerId=null;
+  if(readerTool==='eraser'){if(eraserChanged)save();eraserChanged=false;}
+  else if(activeStroke){
+   if(event.type==='pointerup'){
+    const key=annotationKey();state.annotations[key]=state.annotations[key]||[];
+    state.annotations[key].push(activeStroke);save();
+   }
+   activeStroke=null;drawAnnotations();
+  }
  };
+ // Pinch preview tracks finger distance; commit zoom on gesture completion.
  canvas.onpointerup=complete;
- canvas.onpointercancel=complete;
+ canvas.onpointercancel=event=>{
+  if(event.pointerType==='pen'&&event.pointerId===activePointerId){
+   activePointerId=null;activeStroke=null;if(eraserChanged)save();eraserChanged=false;drawAnnotations();
+  }else complete(event);
+ };
  canvas.onlostpointercapture=event=>{
-  if(event.pointerId===activePointerId){activePointerId=null;activeStroke=null;drawAnnotations();}
+  if(event.pointerType==='pen'&&event.pointerId===activePointerId){
+   activePointerId=null;activeStroke=null;if(eraserChanged)save();eraserChanged=false;drawAnnotations();
+  }
  };
 }
 function drawAnnotations(){const canvas=$('annotation-canvas');if(!canvas)return;const ctx=canvas.getContext('2d');if(!ctx)return;const bounds=canvas.getBoundingClientRect(),w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);const lines=[...(state.annotations[annotationKey()]||[]),...(activeStroke?[activeStroke]:[])];
@@ -280,6 +363,7 @@ async function clickDispatcher(event){let btn=event.target.closest('[data-action
  if(action.startsWith('task-')){const k=+action.slice(5),d=isoDay(),arr=state.dailyTasks[d]||[];state.dailyTasks[d]=arr.includes(k)?arr.filter(x=>x!==k):[...arr,k];save();render();return;}
  if(action==='curriculum-prev'){curriculumPage=Math.max(0,curriculumPage-1);renderCurriculum();return;}
  if(action==='curriculum-next'){curriculumPage++;renderCurriculum();return;}
+ if(action==='reader-fullscreen'){toggleReaderFullscreen();return;}
  if(action.startsWith('tool-')){readerTool=action.slice(5);renderReader();return;}
  if(action.startsWith('page-')){let doc=currentDoc();if(!doc)return;pageNumber=Math.max(1,pageNumber+(action==='page-next'?1:-1));rememberPage();renderReader();return;}
  if(action==='zoom-in'||action==='zoom-out'){zoom=Math.max(.65,Math.min(2.5,zoom+(action==='zoom-in'?.2:-.2)));renderReader();return;}
