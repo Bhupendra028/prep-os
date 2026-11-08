@@ -3,7 +3,7 @@ export const isoDay = (date=new Date()) => `${date.getFullYear()}-${String(date.
 export const startOfDay = d => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
 export const safe = value => String(value??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const shortDate = time => new Date(time).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
-export function makeDefaultState(){return {version:1, created:new Date().toISOString(), examDate:'2027-05-11', weeklyHours:22.5, statuses:{}, readingNotes:{}, documents:[], annotations:{}, flashcards:[], sessions:[], answers:[], dailyTasks:{}, selectedSubject:'All subjects', lastOpenedReading:'los-001'};}
+export function makeDefaultState(){return {version:1, created:new Date().toISOString(), examDate:'2027-05-11', weeklyHours:22.5, statuses:{}, readingNotes:{}, readingPositions:{}, documents:[], annotations:{}, flashcards:[], sessions:[], answers:[], dailyTasks:{}, selectedSubject:'All subjects', lastOpenedReading:'los-001'};}
 export function dueCards(cards){return cards.filter(c=>!c.nextDue || c.nextDue<=Date.now());}
 export function gradeCard(card, quality){
   const out={...card,lastReviewed:Date.now(),reviews:(card.reviews||0)+1};

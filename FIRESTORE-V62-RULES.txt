@@ -1,0 +1,6 @@
+// Add this match block INSIDE your existing service cloud.firestore match /databases/{database}/documents.
+// Do not replace other rules blindly. Only the authenticated owner can read/write.
+match /users/{userId}/sync/{documentId} {
+  allow read, write: if request.auth != null && request.auth.uid == userId
+    && documentId == 'v62';
+}
