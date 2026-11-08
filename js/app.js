@@ -190,7 +190,7 @@ async function loadPDFPage(id,p){if(rendering)return;const status=$('pdf-status'
   pageNumber=Math.max(1,Math.min(doc.numPages,p));const page=await doc.getPage(pageNumber);const base=page.getViewport({scale:1});const width=Math.min(920,Math.max(320,($('doc-viewport')?.clientWidth||850)-44));const actualZoom=zoom*width/base.width;const viewport=page.getViewport({scale:actualZoom});
   const canvas=$('pdf-canvas'),ink=$('annotation-canvas'),stage=readerStage();if(!canvas||!ink||!stage)return;
   const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(viewport.width*dpr);canvas.height=Math.round(viewport.height*dpr);canvas.style.width=`${viewport.width}px`;canvas.style.height=`${viewport.height}px`;
-  stage.style.width=`${viewport.width}px`;stage.style.height=`${viewport.height}px`;ink.width=Math.round(viewport.width*dpr);ink.height=Math.round(viewport.height*dpr);ink.style.width=`${viewport.width}px`;ink.style.height=`${viewport.height}px`;ink.style.touchAction='none';
+  stage.style.width=`${viewport.width}px`;stage.style.height=`${viewport.height}px`;ink.width=Math.round(viewport.width*dpr);ink.height=Math.round(viewport.height*dpr);ink.style.width=`${viewport.width}px`;ink.style.height=`${viewport.height}px`;ink.style.touchAction='pan-x pan-y pinch-zoom';
   await page.render({canvasContext:canvas.getContext('2d'),viewport,transform:dpr!==1?[dpr,0,0,dpr,0,0]:null}).promise;
   $('pdf-pagecount').textContent=doc.numPages;$('page-number').value=pageNumber;
   const key=`${id}:${pageNumber}`;$('page-notes').value=state.readingNotes[key]||'';drawAnnotations();bindDrawing(ink);
@@ -199,11 +199,43 @@ async function loadPDFPage(id,p){if(rendering)return;const status=$('pdf-status'
  finally{rendering=false;}}
 function annotationKey(){return `${state.currentDocId}:${pageNumber}`;}
 function canvasCoords(event,canvas){let rect=canvas.getBoundingClientRect();return {x:Math.max(0,Math.min(1,(event.clientX-rect.left)/rect.width)),y:Math.max(0,Math.min(1,(event.clientY-rect.top)/rect.height))};}
-function bindDrawing(canvas){canvas.onpointerdown=event=>{if(!state.currentDocId)return;event.preventDefault();const pt=canvasCoords(event,canvas);const key=annotationKey();state.annotations[key]=state.annotations[key]||[];
- if(readerTool==='eraser'){let strokes=state.annotations[key];let min=.045,idx=-1;strokes.forEach((s,i)=>s.points.forEach(p=>{const dist=Math.hypot((p.x-pt.x)*1.2,p.y-pt.y);if(dist<min){min=dist;idx=i;}}));if(idx>=0){strokes.splice(idx,1);save();drawAnnotations();}return;}
- activeStroke={tool:readerTool,points:[pt],id:uid()};canvas.setPointerCapture(event.pointerId);drawAnnotations();};
- canvas.onpointermove=event=>{if(!activeStroke)return;event.preventDefault();const pt=canvasCoords(event,canvas);activeStroke.points.push(pt);drawAnnotations();};
- const complete=()=>{if(!activeStroke)return;const key=annotationKey();state.annotations[key]=state.annotations[key]||[];state.annotations[key].push(activeStroke);activeStroke=null;save();drawAnnotations();};canvas.onpointerup=complete;canvas.onpointercancel=complete;};
+// Only stylus pointer events modify PDF ink. Finger touch is reserved for native scroll/pan/pinch and UI controls.
+function bindDrawing(canvas){
+ let activePointerId=null;
+ canvas.onpointerdown=event=>{
+  if(event.pointerType!=='pen'||!state.currentDocId||activePointerId!==null)return;
+  event.preventDefault();
+  const pt=canvasCoords(event,canvas),key=annotationKey();
+  state.annotations[key]=state.annotations[key]||[];
+  if(readerTool==='eraser'){
+   let strokes=state.annotations[key],min=.045,idx=-1;
+   strokes.forEach((stroke,i)=>stroke.points.forEach(p=>{const dist=Math.hypot((p.x-pt.x)*1.2,p.y-pt.y);if(dist<min){min=dist;idx=i;}}));
+   if(idx>=0){strokes.splice(idx,1);save();drawAnnotations();}
+   return;
+  }
+  activePointerId=event.pointerId;
+  activeStroke={tool:readerTool,points:[pt],id:uid()};
+  try{canvas.setPointerCapture(event.pointerId);}catch(e){console.warn('Stylus capture unavailable',e);}
+  drawAnnotations();
+ };
+ canvas.onpointermove=event=>{
+  if(event.pointerType!=='pen'||event.pointerId!==activePointerId||!activeStroke)return;
+  event.preventDefault();activeStroke.points.push(canvasCoords(event,canvas));drawAnnotations();
+ };
+ const complete=event=>{
+  if(event.pointerType!=='pen'||event.pointerId!==activePointerId)return;
+  activePointerId=null;
+  if(!activeStroke)return;
+  const key=annotationKey();state.annotations[key]=state.annotations[key]||[];
+  if(event.type==='pointerup')state.annotations[key].push(activeStroke);
+  activeStroke=null;save();drawAnnotations();
+ };
+ canvas.onpointerup=complete;
+ canvas.onpointercancel=complete;
+ canvas.onlostpointercapture=event=>{
+  if(event.pointerId===activePointerId){activePointerId=null;activeStroke=null;drawAnnotations();}
+ };
+}
 function drawAnnotations(){const canvas=$('annotation-canvas');if(!canvas)return;const ctx=canvas.getContext('2d');if(!ctx)return;const bounds=canvas.getBoundingClientRect(),w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);const lines=[...(state.annotations[annotationKey()]||[]),...(activeStroke?[activeStroke]:[])];
  lines.forEach(s=>{if(!s.points.length)return;ctx.save();ctx.beginPath();ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle=s.tool==='highlighter'?rgba:'#e76e4d';ctx.lineWidth=s.tool==='highlighter'?Math.max(13,w*.022):Math.max(2,w*.004);ctx.globalCompositeOperation='source-over';ctx.moveTo(s.points[0].x*w,s.points[0].y*h);if(s.points.length===1)ctx.lineTo(s.points[0].x*w+.01,s.points[0].y*h+.01);s.points.slice(1).forEach(p=>ctx.lineTo(p.x*w,p.y*h));ctx.stroke();ctx.restore();});}
 
