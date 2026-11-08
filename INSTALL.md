@@ -1,1 +1,1 @@
-Prep OS v6.4 reader full-screen patch, based on v6.3 pen/touch fix. Replace js/app.js and styles.css in GitHub. Backup first. Full screen is an in-app immersive overlay (browser address bar may remain), tap Exit full screen to return. OnePlus Pencil Pro should be identified as pointerType=pen; hardware verification is required. This patch does not add freehand flashcard annotation.
+Targeted v6.2 pen/touch hotfix. Replace js/app.js and styles.css in GitHub. Backup first. Pen writes, highlights and erases; fingers pan and pinch. Hardware test on OnePlus Pad required.
