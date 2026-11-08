@@ -13,3 +13,6 @@ body.reader-fullscreen-open{overflow:hidden!important;}
 .reader-card.reader-fullscreen .statusbar{flex:0 0 auto;}
 .reader-fullscreen-btn{white-space:nowrap;}
 @media(max-width:650px){.reader-card.reader-fullscreen .reader-toolbar{gap:5px;padding:7px}.reader-card.reader-fullscreen .tool-btn{padding:8px 9px}}
+
+/* v6.5 independent pen and highlighter palettes */
+.ink-color-group{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:3px 5px;border:1px solid #dbe6e4;border-radius:10px;background:#f8fbfa}.ink-color-label{font-size:11px;font-weight:750;color:#4d6770;margin-right:2px}.ink-swatch{appearance:none;display:inline-block;width:25px;height:25px;flex:none;border-radius:50%;border:2px solid #ffffff;background:var(--swatch);box-shadow:0 0 0 1px #b8c9c6;cursor:pointer;touch-action:manipulation}.ink-swatch.active{box-shadow:0 0 0 2px #167f70,0 0 0 4px #d4eee7}.ink-swatch:focus-visible{outline:2px solid #2563eb;outline-offset:4px}@media(max-width:650px){.ink-color-group{gap:4px}.ink-swatch{width:23px;height:23px}}
