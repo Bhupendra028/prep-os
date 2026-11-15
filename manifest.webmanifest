@@ -1,1 +1,43 @@
-{"name":"Prep OS — Learning Intelligence","short_name":"Prep OS","description":"Your private learning and exam-preparation workspace","start_url":"./index.html","scope":"./","display":"standalone","background_color":"#f5f8f7","theme_color":"#102c36","icons":[{"src":"./icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{
+  "name": "Fit OS",
+  "short_name": "Fit OS",
+  "description": "Log meals, full nutrition labels, water, sleep, gym, multi-sport training, recovery, meals and groceries on Android",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "orientation": "any",
+  "categories": [
+    "health",
+    "fitness",
+    "lifestyle"
+  ],
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Log food",
+      "short_name": "Food",
+      "url": "./"
+    },
+    {
+      "name": "Log activity",
+      "short_name": "Activity",
+      "url": "./"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+/* Fit OS 3.0 · calorie and micronutrient tracker. Scoped, responsive dark dashboard. */
+#page .n3-page{display:flex;flex-direction:column;gap:18px;min-width:0;max-width:100%;color:#eff7f4}
+#page .n3-page *{box-sizing:border-box}
+#page .n3-top{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:4px}
+#page .n3-eyebrow,#page .n3-section-kicker,#page .n3-panel-kicker{font-size:10px;text-transform:uppercase;font-weight:850;letter-spacing:2px;color:#a6ed86}
+#page .n3-top h2{font-size:clamp(25px,3.4vw,36px);line-height:1.14;letter-spacing:-.055em;margin:7px 0 7px;color:#f2fbf9}
+#page .n3-top p{font-size:13px;color:#a0b8c6;line-height:1.5;margin:0}
+#page .n3-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#page .n3-actions .btn{min-height:42px}
+#page .n3-hero-grid{display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.32fr);gap:16px;min-width:0}
+#page .n3-calorie-panel,#page .n3-summary-panel,#page .n3-panel{min-width:0;border:1px solid #365366;border-radius:20px;background:linear-gradient(145deg,#172c40 0%,#102232 94%);box-shadow:0 10px 34px rgba(3,10,20,.14)}
+#page .n3-calorie-panel,#page .n3-summary-panel{padding:22px;overflow:hidden}
+#page .n3-calorie-body{display:flex;gap:20px;align-items:center;min-width:0;padding-top:18px}
+#page .n3-ring{--progress:0%;flex:0 0 auto;width:166px;height:166px;border-radius:50%;background:conic-gradient(#b5f386 0 var(--progress),#2c4555 var(--progress) 100%);display:grid;place-items:center;position:relative}
+#page .n3-ring:before{content:"";position:absolute;inset:13px;border-radius:50%;background:#142a3b}
+#page .n3-ring>div{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
+#page .n3-ring strong{font-size:35px;line-height:1;letter-spacing:-1.5px;color:#f3fcf7;font-variant-numeric:tabular-nums}
+#page .n3-ring small{font-size:11px;color:#a4b9c7}
+#page .n3-energy-info{min-width:0;flex:1}
+#page .n3-energy-info>span{color:#9bb3c4;font-size:10px;letter-spacing:1.4px;font-weight:750}
+#page .n3-energy-info>strong{display:block;color:#f1f8f7;font-size:clamp(24px,2.4vw,32px);line-height:1.2;margin:6px 0 12px;font-variant-numeric:tabular-nums}
+#page .n3-energy-info strong small,#page .n3-energy-left small{font-size:12px;color:#92adb9;font-weight:500}
+#page .n3-energy-left{font-weight:800;font-size:20px;color:#bdf19c}
+#page .n3-energy-info p{font-size:11px;color:#86a3b4;line-height:1.5;margin:10px 0 0}
+#page .n3-macro-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:17px}
+#page .n3-macro-card{background:#112438;border:1px solid #2c475a;padding:13px 14px 15px;border-radius:15px;min-width:0}
+#page .n3-macro-top{display:flex;justify-content:space-between;gap:7px;font-size:11px;color:#a8c0cc;font-weight:720}
+#page .n3-macro-card strong{font-size:23px;letter-spacing:-.7px;display:block;color:#f3f8f8;margin:12px 0 9px;line-height:1.15;white-space:nowrap}
+#page .n3-macro-card strong small{color:#98adbf;font-size:11px;font-weight:500;letter-spacing:0}
+#page .n3-meter{height:7px;border-radius:20px;background:#263f50;overflow:hidden;width:100%;margin-top:8px}
+#page .n3-meter i{display:block;height:100%;width:0;border-radius:20px;background:#b6f088;transition:width .22s ease}
+#page .n3-macro-card.carbs .n3-meter i{background:#edba63}
+#page .n3-macro-card.fat .n3-meter i{background:#ea94ac}
+#page .n3-macro-card.fibre .n3-meter i{background:#89badb}
+#page .n3-two-panel{display:grid;grid-template-columns:minmax(0,1.57fr) minmax(260px,.72fr);gap:16px;align-items:stretch;min-width:0}
+#page .n3-panel{padding:22px;overflow:hidden}
+#page .n3-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+#page .n3-section-head h3,#page .n3-panel>h3{font-size:19px;margin:6px 0 7px;color:#f4faf9;line-height:1.25;letter-spacing:-.02em}
+#page .n3-section-head p,#page .n3-panel>p{font-size:12px;line-height:1.5;color:#94b1bf;margin:0}
+#page .n3-meal-list{display:flex;flex-direction:column;gap:11px}
+#page .n3-meal-block{padding:12px 14px;border-radius:15px;background:#112638;border:1px solid #2d4858;min-width:0}
+#page .n3-meal-head{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap}
+#page .n3-meal-head>div{display:grid;grid-template-columns:30px 1fr;column-gap:10px;row-gap:1px;align-items:center}
+#page .n3-meal-icon{grid-row:1/3;display:grid;place-items:center;border-radius:10px;width:30px;height:32px;background:#264439;color:#b6ed91;font-size:19px}
+#page .n3-meal-head h3{margin:0;font-size:13px;line-height:1.25;color:#e4f5e9}
+#page .n3-meal-head small{font-size:10px;color:#92afbd}
+#page .n3-meal-head .btn{min-height:34px;font-size:11px;padding:7px 9px}
+#page .n3-empty{margin:10px 0 0 40px;font-size:11px;color:#7796a6}
+#page .n3-food-row{display:flex;gap:12px;justify-content:space-between;align-items:center;border-top:1px solid #2b4252;margin-top:9px;padding-top:9px;min-width:0}
+#page .n3-food-row>div:first-child{min-width:0;flex:1}
+#page .n3-food-row strong{display:block;font-size:12px;color:#eff9f8;overflow-wrap:anywhere}
+#page .n3-food-row small{font-size:10px;color:#99afbe;display:block;margin-top:3px}
+#page .n3-food-right{display:flex;align-items:center;gap:7px;flex:0 0 auto}
+#page .n3-food-right strong{white-space:nowrap;font-size:11px;color:#c5f5a3}
+#page .n3-food-right button{border:1px solid #345365;border-radius:7px;min-width:25px;height:25px;background:#1b3547;color:#d0e8e5;cursor:pointer}
+#page .n3-explain>p{font-size:13px;color:#a3bcc9;line-height:1.65;margin:12px 0 18px}
+#page .n3-mini-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+#page .n3-mini-facts>div{background:#112738;border:1px solid #2a4857;border-radius:11px;padding:11px 7px;text-align:center}
+#page .n3-mini-facts strong{display:block;color:#b6f188;font-size:23px;font-weight:850}
+#page .n3-mini-facts small{font-size:9px;line-height:1.4;color:#9fb7c6;display:block}
+#page .n3-info-box{background:#17342f;border:1px solid #385b49;border-radius:13px;padding:12px 13px;margin:18px 0}
+#page .n3-info-box b{font-size:12px;color:#c8efa7}
+#page .n3-info-box p{font-size:11px;line-height:1.55;color:#a8c9c4;margin:4px 0 0}
+#page .n3-counter{font-size:12px;white-space:nowrap;color:#cef39e;background:#254336;border:1px solid #456b50;padding:7px 10px;border-radius:50px}
+#page .n3-minerals-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#page .n3-mineral-card{border:1px solid #314d60;border-radius:14px;background:#112638;padding:13px 14px 12px;min-width:0}
+#page .n3-mineral-top{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px}
+#page .n3-mineral-top b{color:#e1f4ee;font-weight:750;overflow-wrap:anywhere}
+#page .n3-mineral-dot{flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:#52667a}
+#page .n3-mineral-dot.present{background:#a9e78b}
+#page .n3-mineral-value{font-size:19px;font-weight:850;letter-spacing:-.025em;line-height:1.25;margin:12px 0 5px;color:#e9f9ed;font-variant-numeric:tabular-nums}
+#page .n3-mineral-ref{font-size:11px;color:#a0b5c1}
+#page .n3-mineral-card.caution .n3-meter i{background:#e9b75f}
+#page .n3-mineral-card.partial .n3-meter i{background:#90bfe5}
+#page .n3-mineral-card.neutral .n3-meter i{background:#617789}
+#page .n3-coverage{font-size:10px;color:#8aa9ba;line-height:1.4;margin-top:8px;min-height:14px}
+#page .n3-mineral-card details{margin-top:9px;font-size:10px;color:#91a8b9;line-height:1.5}
+#page .n3-mineral-card summary{cursor:pointer;color:#94c9b5;outline-offset:3px}
+#page .n3-mineral-card details small{display:block;margin-top:6px;font-size:10px}
+#page .n3-footnote{margin-top:14px!important;font-size:11px!important;color:#97b5c3!important;line-height:1.7!important}
+#page .n3-other-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px}
+#page .n3-vit-row{display:grid;grid-template-columns:minmax(110px,.8fr) minmax(0,1.5fr);align-items:center;gap:10px;padding:10px;background:#122638;border:1px solid #294657;border-radius:11px;min-width:0}
+#page .n3-vit-row strong{font-size:11px;color:#e9f8f2;display:block}
+#page .n3-vit-row small{font-size:9px;color:#809eaf;display:block;margin-top:4px}
+#page .n3-vit-row>div:last-child{min-width:0}
+#page .n3-vit-row span{font-size:10px;color:#a0bdc8;overflow-wrap:anywhere}
+#page .n3-vit-row .n3-meter{height:5px;margin-top:6px}
+#page .n3-more{margin-top:14px;color:#b4cbd4}
+#page .n3-more summary{cursor:pointer;font-weight:700;padding:9px 0}
+#page .n3-more .nutrient-columns{margin-top:8px}
+@media(max-width:1160px){#page .n3-hero-grid,#page .n3-two-panel{grid-template-columns:minmax(0,1fr)}#page .n3-minerals-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:780px){#page .n3-minerals-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#page .n3-other-grid{grid-template-columns:minmax(0,1fr)}#page .n3-panel,#page .n3-calorie-panel,#page .n3-summary-panel{padding:16px}#page .n3-top{gap:12px}#page .n3-actions{width:100%}#page .n3-actions .btn{flex:1 1 auto}}
+@media(max-width:480px){#page .n3-ring{width:124px;height:124px}#page .n3-ring:before{inset:11px}#page .n3-ring strong{font-size:27px}#page .n3-calorie-body{gap:13px}#page .n3-energy-info>strong{font-size:23px}#page .n3-energy-left{font-size:17px}#page .n3-macro-grid{gap:9px}#page .n3-macro-card{padding:12px}#page .n3-macro-card strong{font-size:21px}#page .n3-minerals-grid{gap:9px}#page .n3-mineral-card{padding:12px}#page .n3-mineral-value{font-size:16px}#page .n3-vit-row{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}#page .n3-food-row{flex-wrap:wrap}#page .n3-food-right{width:100%;justify-content:flex-end}}
+@media(max-width:350px){#page .n3-minerals-grid{grid-template-columns:minmax(0,1fr)}#page .n3-calorie-body{flex-wrap:wrap}#page .n3-macro-grid{grid-template-columns:minmax(0,1fr)}}
+/* Fit OS 3.1 · Screenshot-style CALORIES / NUTRIENTS / MACROS and Total-Goal-Left reports */
+#page .n3-tabbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid #2b455c;background:#172535;border-radius:12px 12px 0 0;overflow:hidden;min-width:0}
+#page .n3-tab{appearance:none;border:0;border-bottom:3px solid transparent;padding:15px 8px;background:transparent;color:#a6b1c0;font-size:13px;letter-spacing:.045em;font-weight:800;cursor:pointer;min-width:0}
+#page .n3-tab:hover{background:#24364a;color:#dcecf5}
+#page .n3-tab.active{color:#70b3ff;border-bottom-color:#4fa0ff;background:#202c42}
+#page .n3-tab:focus-visible{outline:2px solid #70b3ff;outline-offset:-3px}
+#page .n3-datebar{display:flex;align-items:center;justify-content:space-between;min-height:70px;border:1px solid #2b455c;border-top:0;background:#122336;margin-top:-18px;border-radius:0 0 12px 12px}
+#page .n3-datebar button{border:0;background:transparent;color:#b7c9db;min-height:64px;min-width:62px;cursor:pointer;font-size:30px}
+#page .n3-datebar button:hover{background:#213b50;color:#eff7ff}
+#page .n3-datebar>div{display:flex;flex-direction:column;align-items:center;gap:3px}
+#page .n3-datebar strong{color:#d4e2ed;font-size:13px;font-weight:700}
+#page .n3-datebar span{color:#eff5ff;font-size:17px}
+#page .n3-nutrients-panel{padding:0;overflow:hidden}
+#page .n3-nutrients-panel>.n3-section-head{padding:21px 23px 5px}
+#page .n3-report{padding:0;min-width:0}
+#page .n3-report-heading{display:grid;grid-template-columns:minmax(0,1.8fr) repeat(3,minmax(0,.8fr));align-items:center;gap:4px;padding:12px 16px;background:#121b2b;border-top:1px solid #30495e;border-bottom:1px solid #30495e;color:#e1e8ef;font-weight:800;letter-spacing:.055em;font-size:11px;position:sticky;top:0;z-index:1}
+#page .n3-report-heading span:not(:first-child){text-align:right}
+#page .n3-report-group{border-bottom:1px solid #2d4558;margin:0;padding:0}
+#page .n3-report-group-title{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;padding:13px 17px;background:#1c2a3a}
+#page .n3-report-group-title h3{margin:0;font-size:13px;letter-spacing:.045em;color:#e7f3f8;font-weight:800}
+#page .n3-report-group-title small{font-size:10px;color:#a4b5c3}
+#page .n3-report-row{padding:13px 16px 10px;background:#131f30;border-bottom:1px solid #2e4052;min-width:0}
+#page .n3-report-row:nth-child(even){background:#182536}
+#page .n3-report-values{display:grid;grid-template-columns:minmax(0,1.8fr) repeat(3,minmax(0,.8fr));align-items:center;gap:4px;min-width:0}
+#page .n3-report-name{display:flex;flex-direction:column;gap:4px;min-width:0}
+#page .n3-report-name strong{color:#ecf2fa;font-size:14px;line-height:1.3;font-weight:620;overflow-wrap:anywhere}
+#page .n3-report-name small{font-size:9px;color:#8096a8;line-height:1.35}
+#page .n3-report-num{color:#bbc8d4;font-size:12px;text-align:right;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+#page .n3-report-num.n3-upper{color:#deb27a}
+#page .n3-report-meter{height:5px;background:#2b3648;margin-top:11px;border-radius:20px;overflow:hidden;width:100%}
+#page .n3-report-meter i{display:block;height:100%;background:#4da6fb;border-radius:20px}
+#page .n3-partial-row .n3-report-meter i{background:#b6a86b}
+#page .n3-report-legend{padding:16px 18px;color:#9cb6c6;font-size:11px;line-height:1.6;background:#1b2c3b}
+#page .n3-page>.n3-info-box{margin:0}
+#page .n3-page>.n3-report-group{background:#15263a;border:1px solid #355062;border-radius:14px;overflow:hidden}
+@media(max-width:600px){#page .n3-tab{font-size:12px;padding:14px 3px}#page .n3-datebar{min-height:62px}#page .n3-datebar button{min-height:56px;min-width:48px}#page .n3-report-heading{grid-template-columns:minmax(0,1.55fr) repeat(3,minmax(0,.78fr));padding:10px 8px;font-size:10px;gap:3px}#page .n3-nutrients-panel>.n3-section-head{padding:16px 13px 3px}#page .n3-report-row{padding:12px 8px 10px}#page .n3-report-values{grid-template-columns:minmax(0,1.55fr) repeat(3,minmax(0,.78fr));gap:3px}#page .n3-report-name strong{font-size:12px}#page .n3-report-name small{font-size:8px}#page .n3-report-num{font-size:10px}#page .n3-report-group-title{padding:11px 9px;gap:4px}#page .n3-report-group-title small{font-size:9px}#page .n3-report-legend{padding:13px 10px;font-size:10px}}

@@ -1,0 +1,554 @@
+[
+  {
+    "id": "R01",
+    "name": "Masala soy rice bowl",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Soy chunks, dry",
+        "quantity": 50
+      },
+      {
+        "food": "Mess rice cooked",
+        "quantity": 200
+      },
+      {
+        "food": "Onion raw",
+        "quantity": 50
+      },
+      {
+        "food": "Tomato",
+        "quantity": 50
+      },
+      {
+        "food": "Cooking oil",
+        "quantity": 5
+      }
+    ],
+    "steps": "1. Soak or boil soy chunks 5-8 min until tender; drain and squeeze. | 2. In an approved cooker or pan, heat a little oil and season tomato/onion with spices. | 3. Add soy chunks and a splash of water; cook 3-4 min. | 4. Serve over hot mess rice.",
+    "safety": "Make one portion only; no room-temperature leftovers"
+  },
+  {
+    "id": "R02",
+    "name": "Spicy chicken rice bowl",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Chicken breast raw",
+        "quantity": 150
+      },
+      {
+        "food": "Mess rice cooked",
+        "quantity": 200
+      },
+      {
+        "food": "Mess vegetables",
+        "quantity": 100
+      },
+      {
+        "food": "Cooking oil",
+        "quantity": 5
+      },
+      {
+        "food": "Lemon juice",
+        "quantity": 20
+      }
+    ],
+    "steps": "1. Cut chicken into small even pieces and season with masala and lemon. | 2. Cook on approved air fryer or induction until center is 74 C. | 3. Add cooked vegetables and a fresh mess rice serving. | 4. Finish with lemon.",
+    "safety": "Buy and cook chicken same day; no storing leftovers"
+  },
+  {
+    "id": "R03",
+    "name": "Egg and chana power salad",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Egg, boiled",
+        "quantity": 2
+      },
+      {
+        "food": "Chickpeas cooked (drained)",
+        "quantity": 100
+      },
+      {
+        "food": "Cucumber",
+        "quantity": 50
+      },
+      {
+        "food": "Tomato",
+        "quantity": 50
+      },
+      {
+        "food": "Lemon juice",
+        "quantity": 20
+      }
+    ],
+    "steps": "1. Obtain freshly cooked eggs and chana. | 2. Dice cucumber and tomato. | 3. Mix chickpeas, chopped eggs, vegetables, lemon and pepper. | 4. Eat immediately.",
+    "safety": "Use prepared mess chana; do not store mixed salad"
+  },
+  {
+    "id": "R04",
+    "name": "Cold chickpea cucumber salad",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Chickpeas cooked (drained)",
+        "quantity": 150
+      },
+      {
+        "food": "Cucumber",
+        "quantity": 75
+      },
+      {
+        "food": "Tomato",
+        "quantity": 75
+      },
+      {
+        "food": "Ground flaxseed",
+        "quantity": 10
+      },
+      {
+        "food": "Lemon juice",
+        "quantity": 20
+      }
+    ],
+    "steps": "1. Drain and rinse ready-to-eat chickpeas if packaged. | 2. Chop washed produce. | 3. Mix with ground flaxseed, lemon and spices. | 4. Eat immediately.",
+    "safety": "Cooked chickpeas must be fresh; no overnight storage"
+  },
+  {
+    "id": "R05",
+    "name": "Egg oats savoury bowl",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Quaker plain oats",
+        "quantity": 40
+      },
+      {
+        "food": "Egg, boiled",
+        "quantity": 2
+      },
+      {
+        "food": "Mess vegetables",
+        "quantity": 100
+      },
+      {
+        "food": "Cooking oil",
+        "quantity": 5
+      }
+    ],
+    "steps": "1. Simmer oats in water 4-5 min. | 2. Add vegetables and cook until soft. | 3. Stir in beaten egg and continue cooking until fully set. | 4. Season and eat hot.",
+    "safety": "Cook egg fully; follow your kettle manual for allowed cooking"
+  },
+  {
+    "id": "R06",
+    "name": "Instant banana peanut oats",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Quaker plain oats",
+        "quantity": 60
+      },
+      {
+        "food": "Banana",
+        "quantity": 1
+      },
+      {
+        "food": "Roasted peanuts",
+        "quantity": 25
+      }
+    ],
+    "steps": "1. Cover oats with hot water and soften for 3-5 min. | 2. Slice banana. | 3. Mix banana, peanuts and cinnamon. | 4. Eat right away.",
+    "safety": "Shelf-stable until prepared; no dairy needed"
+  },
+  {
+    "id": "R07",
+    "name": "High-protein milk oats",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Quaker plain oats",
+        "quantity": 50
+      },
+      {
+        "food": "Country Delight 2X milk 450 ml",
+        "quantity": 450
+      }
+    ],
+    "steps": "1. Open chilled milk purchased for immediate use. | 2. Soften oats with warm water; allow to cool slightly. | 3. Stir in milk and cinnamon. | 4. Add fruit and consume promptly.",
+    "safety": "Milk pack says refrigerate below 5 C; do not save leftovers"
+  },
+  {
+    "id": "R08",
+    "name": "Lemon-pepper chicken",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Chicken breast raw",
+        "quantity": 150
+      },
+      {
+        "food": "Lemon juice",
+        "quantity": 20
+      },
+      {
+        "food": "Cooking oil",
+        "quantity": 5
+      }
+    ],
+    "steps": "1. Pat chicken dry with clean paper towel. | 2. Rub lemon, pepper, salt, garlic and oil. | 3. Cook until thickest part reaches 74 C. | 4. Rest 3 min; eat immediately.",
+    "safety": "Separate raw chicken utensils; no fridge means same-day cooking"
+  },
+  {
+    "id": "R09",
+    "name": "Tandoori-style chicken",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Chicken breast raw",
+        "quantity": 150
+      },
+      {
+        "food": "Amul Masti curd",
+        "quantity": 30
+      },
+      {
+        "food": "Lemon juice",
+        "quantity": 20
+      }
+    ],
+    "steps": "1. Make a thick paste of curd, spices and lemon. | 2. Coat raw chicken immediately before cooking. | 3. Cook to 74 C internal temperature. | 4. Serve fresh with mess roti or salad.",
+    "safety": "Do not marinate unrefrigerated for hours"
+  },
+  {
+    "id": "R10",
+    "name": "Chilli-garlic soy chunks",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Soy chunks, dry",
+        "quantity": 50
+      },
+      {
+        "food": "Capsicum raw",
+        "quantity": 50
+      },
+      {
+        "food": "Onion raw",
+        "quantity": 50
+      }
+    ],
+    "steps": "1. Soften chunks in boiling water and squeeze. | 2. Cook garlic and vegetables in a little oil. | 3. Stir in soy and spices. | 4. Serve steaming hot.",
+    "safety": "Use fresh portions; avoid high-sodium sauces in large quantities"
+  },
+  {
+    "id": "R11",
+    "name": "Soy masala roti wrap",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Soy chunks, dry",
+        "quantity": 50
+      },
+      {
+        "food": "Mess chapati 1 piece",
+        "quantity": 2
+      },
+      {
+        "food": "Mess vegetables",
+        "quantity": 100
+      }
+    ],
+    "steps": "1. Cook soy masala as in R10. | 2. Spread over two fresh rotis. | 3. Add chopped cucumber and lemon. | 4. Roll tightly and eat.",
+    "safety": "Do not pack for later without chilling"
+  },
+  {
+    "id": "R12",
+    "name": "Egg salad chapati roll",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Egg, boiled",
+        "quantity": 2
+      },
+      {
+        "food": "Mess chapati 1 piece",
+        "quantity": 2
+      },
+      {
+        "food": "Cucumber",
+        "quantity": 50
+      },
+      {
+        "food": "Tomato",
+        "quantity": 50
+      }
+    ],
+    "steps": "1. Chop freshly boiled eggs. | 2. Mix with diced cucumber and tomato. | 3. Season with lemon and pepper. | 4. Roll in chapatis; eat fresh.",
+    "safety": "Eggs should not sit at room temperature for extended periods"
+  },
+  {
+    "id": "R13",
+    "name": "Protein milk banana shake",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Country Delight 2X milk 450 ml",
+        "quantity": 450
+      },
+      {
+        "food": "Banana",
+        "quantity": 1
+      }
+    ],
+    "steps": "1. Buy chilled pouch for same-day use. | 2. Mash banana with a fork. | 3. Shake or blend with the milk and cinnamon. | 4. Drink immediately.",
+    "safety": "Do not leave milk at room temperature"
+  },
+  {
+    "id": "R14",
+    "name": "Curd fruit flax bowl",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Amul Masti curd",
+        "quantity": 200
+      },
+      {
+        "food": "Papaya",
+        "quantity": 150
+      },
+      {
+        "food": "Ground flaxseed",
+        "quantity": 10
+      }
+    ],
+    "steps": "1. Wash and chop the fruit. | 2. Add fresh cold curd. | 3. Sprinkle ground flaxseed. | 4. Eat immediately.",
+    "safety": "Buy curd for immediate consumption without fridge"
+  },
+  {
+    "id": "R15",
+    "name": "Peanut banana pre-football snack",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Banana",
+        "quantity": 1
+      },
+      {
+        "food": "Roasted peanuts",
+        "quantity": 25
+      }
+    ],
+    "steps": "1. Eat banana 45-90 minutes before football. | 2. Add a modest peanut serving if comfortably digested. | 3. Hydrate with water.",
+    "safety": "Reduce fat close to kick-off if it causes stomach upset"
+  },
+  {
+    "id": "R16",
+    "name": "Simple lemon fish bowl",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Basa fish raw",
+        "quantity": 150
+      },
+      {
+        "food": "Mess rice cooked",
+        "quantity": 150
+      },
+      {
+        "food": "Mess vegetables",
+        "quantity": 100
+      },
+      {
+        "food": "Lemon juice",
+        "quantity": 20
+      }
+    ],
+    "steps": "1. Season fish with lemon and pepper. | 2. Cook fish to 63 C internal temperature or until opaque and flakes. | 3. Serve with fresh hot mess rice and vegetables.",
+    "safety": "No storage without fridge; fish is optional and expensive"
+  },
+  {
+    "id": "R17",
+    "name": "Roasted chana salad",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Roasted chana",
+        "quantity": 40
+      },
+      {
+        "food": "Cucumber",
+        "quantity": 75
+      },
+      {
+        "food": "Tomato",
+        "quantity": 75
+      },
+      {
+        "food": "Ground flaxseed",
+        "quantity": 10
+      }
+    ],
+    "steps": "1. Wash and chop vegetables. | 2. Add crunchy roasted chana. | 3. Mix lemon, pepper and flaxseed. | 4. Eat immediately.",
+    "safety": "All ingredients shelf-stable before cutting except produce"
+  },
+  {
+    "id": "R18",
+    "name": "Mess dal protein rice plate",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Mess dal cooked",
+        "quantity": 200
+      },
+      {
+        "food": "Mess rice cooked",
+        "quantity": 200
+      },
+      {
+        "food": "Mess vegetables",
+        "quantity": 150
+      }
+    ],
+    "steps": "1. Take hot mess dal, rice and cooked vegetables. | 2. Prioritize dal and vegetables first. | 3. Add rice to match your football/training energy needs. | 4. Finish with lemon.",
+    "safety": "Protein varies significantly with actual mess dal thickness"
+  },
+  {
+    "id": "R19",
+    "name": "Quick milk-free masala oats",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Quaker plain oats",
+        "quantity": 60
+      },
+      {
+        "food": "Carrot",
+        "quantity": 50
+      },
+      {
+        "food": "Tomato",
+        "quantity": 50
+      },
+      {
+        "food": "Cooking oil",
+        "quantity": 5
+      }
+    ],
+    "steps": "1. Heat water and add oats. | 2. Cook vegetables in the pot until tender. | 3. Stir in oats and spices; simmer to preferred thickness. | 4. Serve hot.",
+    "safety": "Use only cookware allowed by hostel rules"
+  },
+  {
+    "id": "R20",
+    "name": "Chicken chana salad",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Chicken breast raw",
+        "quantity": 150
+      },
+      {
+        "food": "Chickpeas cooked (drained)",
+        "quantity": 100
+      },
+      {
+        "food": "Cucumber",
+        "quantity": 50
+      },
+      {
+        "food": "Tomato",
+        "quantity": 50
+      }
+    ],
+    "steps": "1. Cook chicken separately to 74 C. | 2. Combine freshly cooked chana and washed vegetables. | 3. Add sliced hot chicken and lemon. | 4. Eat immediately.",
+    "safety": "No fridge: cook, eat, discard leftovers"
+  },
+  {
+    "id": "R21",
+    "name": "Peanut flax energy oats",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Quaker plain oats",
+        "quantity": 60
+      },
+      {
+        "food": "Roasted peanuts",
+        "quantity": 20
+      },
+      {
+        "food": "Ground flaxseed",
+        "quantity": 10
+      },
+      {
+        "food": "Banana",
+        "quantity": 1
+      }
+    ],
+    "steps": "1. Soften oats in hot water. | 2. Add sliced banana and peanuts. | 3. Sprinkle ground flaxseed. | 4. Mix and eat.",
+    "safety": "No refrigeration needed until prepared"
+  },
+  {
+    "id": "R22",
+    "name": "Three-egg roti breakfast",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Egg, boiled",
+        "quantity": 3
+      },
+      {
+        "food": "Mess chapati 1 piece",
+        "quantity": 2
+      },
+      {
+        "food": "Cucumber",
+        "quantity": 50
+      },
+      {
+        "food": "Tomato",
+        "quantity": 50
+      }
+    ],
+    "steps": "1. Take three freshly cooked eggs. | 2. Add two fresh mess chapatis. | 3. Add raw vegetable salad and pepper. | 4. Eat at breakfast.",
+    "safety": "Three breakfast eggs included in mess as reported"
+  },
+  {
+    "id": "R23",
+    "name": "Guava curd chaat",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Amul Masti curd",
+        "quantity": 200
+      },
+      {
+        "food": "Guava",
+        "quantity": 100
+      },
+      {
+        "food": "Lemon juice",
+        "quantity": 20
+      }
+    ],
+    "steps": "1. Wash and dice guava. | 2. Combine with fresh curd. | 3. Add a little spice and lemon. | 4. Eat immediately.",
+    "safety": "Requires chilled curd consumed promptly"
+  },
+  {
+    "id": "R24",
+    "name": "Roasted chana peanut crunch",
+    "servingsYield": 1,
+    "ingredientsList": [
+      {
+        "food": "Roasted chana",
+        "quantity": 40
+      },
+      {
+        "food": "Roasted peanuts",
+        "quantity": 25
+      }
+    ],
+    "steps": "1. Portion the chana and peanuts. | 2. Add spice if desired. | 3. Pack dry for between classes.",
+    "safety": "Shelf-stable snack; watch portions if reducing calories"
+  }
+]
